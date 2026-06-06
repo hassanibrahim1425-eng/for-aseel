@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إلى أميرتي أسيل</title>
+    <style>
+        /* تصميم الصفحة بالكامل */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
+            color: #4a0e17;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #800f2f;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .heart-icon {
+            color: #c9184a;
+            font-size: 4rem;
+            animation: heartbeat 1.2s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            20% { transform: scale(1.1); }
+            40% { transform: scale(1); }
+            60% { transform: scale(1.15); }
+            80% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+
+        main {
+            max-width: 600px;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(128, 15, 47, 0.15);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .love-message {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #590d22;
+            margin-bottom: 30px;
+        }
+
+        /* تصميم العداد الزمني */
+        .timer-container {
+            background-color: #fff0f3;
+            border: 2px dashed #ffb3c1;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .timer-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #800f2f;
+            margin-bottom: 15px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .time-box {
+            background: #ffb3c1;
+            padding: 10px 15px;
+            border-radius: 10px;
+            min-width: 60px;
+        }
+
+        .time-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #590d22;
+            display: block;
+        }
+
+        .time-label {
+            font-size: 0.8rem;
+            color: #800f2f;
+        }
+
+        /* تصميم الزر التفاعلي */
+        .surprise-btn {
+            background-color: #c9184a;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(201, 24, 74, 0.3);
+            font-family: inherit;
+        }
+
+        .surprise-btn:hover {
+            background-color: #a01a3e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(201, 24, 74, 0.4);
+        }
+
+        .hidden-message {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #800f2f;
+            font-weight: bold;
+            display: none;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #800f2f;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="heart-icon">♥</div>
+        <h1>إلى ملكة قلبي أسيل</h1>
+    </header>
+
+    <main>
+        <p class="love-message">
+            كل يوم يمر وأنتِ بجانبي هو بمثابة عُمر جديد لي. 
+            وجودكِ في حياتي يملؤها بالفرح والدفء، وأدعو الله أن يديمكِ لي سنداً وحبيبة وزوجة طوال العمر.
+        </p>
+
+        <div class="timer-container">
+            <div class="timer-title">الوقت الذي عشناه سوياً بكل حب:</div>
+            <div class="countdown">
+                <div class="time-box">
+                    <span class="time-number" id="days">00</span>
+                    <span class="time-label">يوم</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-number" id="hours">00</span>
+                    <span class="time-label">ساعة</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-number" id="minutes">00</span>
+                    <span class="time-label">دقيقة</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-number" id="seconds">00</span>
+                    <span class="time-label">ثانية</span>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="surprise-btn" onclick="revealLove()">اضغطي هنا لمعرفة سر</button>
+        <div id="secretMessage" class="hidden-message">
+            "أنتِ لستِ فقط زوجتي، بل أنتِ أجمل النعم التي أحمد الله عليها كل يوم.. أحبكِ يا أسيل!"
+        </div>
+    </main>
+
+    <footer>
+        <p>صُنع بكل حب وبرمجة خاصة لأسيل</p>
+    </footer>
+
+    <script>
+        // دالة إظهار الرسالة المخفية عند الضغط على الزر
+        function revealLove() {
+            var msg = document.getElementById("secretMessage");
+            if (msg.style.display === "none" || msg.style.display === "") {
+                msg.style.display = "block";
+            } else {
+                msg.style.display = "none";
+            }
+        }
+
+        // تم تعديل التاريخ هنا إلى 29 أكتوبر 2017
+        // (الشهر 9 يعبر عن أكتوبر لأن الحساب يبدأ من 0)
+        const startDate = new Date(2017, 9, 29); 
+
+        function updateTimer() {
+            const now = new Date();
+            const difference = now - startDate;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        }
+
+        // تحديث العداد كل ثانية بشكل حي ومباشر
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+
+</body>
+</html>
